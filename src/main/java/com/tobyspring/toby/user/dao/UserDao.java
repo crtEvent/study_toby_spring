@@ -43,4 +43,22 @@ public class UserDao {
         return  user;
     }
 
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        UserDao dao = new UserDao();
+
+        User user = new User();
+        user.setId("tempId");
+        user.setName("이름");
+        user.setPassword("1234");
+
+        dao.add(user);
+        System.out.printf("%s 등록 성공%n", user.getId());
+
+        User user2 = dao.get(user.getId());
+        System.out.printf("%s 조회 성공%n", user2.getId());
+        System.out.printf("name: %s, password: %s%n"
+                , user2.getName(), user2.getPassword());
+
+    }
+
 }
