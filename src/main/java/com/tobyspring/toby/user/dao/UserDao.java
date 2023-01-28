@@ -43,6 +43,19 @@ public class UserDao {
         return  user;
     }
 
+    public void delete(String id) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/toby_spring", "toby", "1234");
+
+        PreparedStatement ps = c.prepareStatement("delete from users where id = ?");
+        ps.setString(1, id);
+
+        ps.executeUpdate();
+
+        ps.close();
+        c.close();
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDao dao = new UserDao();
 
@@ -51,6 +64,8 @@ public class UserDao {
         user.setName("이름");
         user.setPassword("1234");
 
+        dao.delete(user.getId());
+
         dao.add(user);
         System.out.printf("%s 등록 성공%n", user.getId());
 
@@ -58,7 +73,6 @@ public class UserDao {
         System.out.printf("%s 조회 성공%n", user2.getId());
         System.out.printf("name: %s, password: %s%n"
                 , user2.getName(), user2.getPassword());
-
     }
 
 }
