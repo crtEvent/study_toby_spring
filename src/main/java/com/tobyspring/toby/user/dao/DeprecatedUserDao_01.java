@@ -4,17 +4,11 @@ import com.tobyspring.toby.user.domain.User;
 
 import java.sql.*;
 
-public class UserDao {
-
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
+public class DeprecatedUserDao_01 {
+    /*
+    public void add(User user) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/toby_spring", "toby", "1234");
-
-        return c;
-    }
-
-    public void add(User user) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
 
         PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?, ?, ?)");
         ps.setString(1, user.getId());
@@ -28,7 +22,8 @@ public class UserDao {
     }
 
     public User get(String id) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/toby_spring", "toby", "1234");
 
         PreparedStatement ps = c.prepareStatement("select id, name, password from users where id = ?");
         ps.setString(1, id);
@@ -49,7 +44,8 @@ public class UserDao {
     }
 
     public void delete(String id) throws ClassNotFoundException, SQLException {
-        Connection c = getConnection();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/toby_spring", "toby", "1234");
 
         PreparedStatement ps = c.prepareStatement("delete from users where id = ?");
         ps.setString(1, id);
@@ -61,7 +57,7 @@ public class UserDao {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        UserDao dao = new UserDao();
+        DeprecatedUserDao_01 dao = new DeprecatedUserDao_01();
 
         User user = new User();
         user.setId("tempId");
@@ -78,4 +74,5 @@ public class UserDao {
         System.out.printf("name: %s, password: %s%n"
                 , user2.getName(), user2.getPassword());
     }
+*/
 }
